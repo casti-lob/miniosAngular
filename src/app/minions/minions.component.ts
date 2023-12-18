@@ -10,6 +10,7 @@ import { Minions } from '../interfaces/minion';
 })
 export class MinionsComponent {
   @Input() minionsSearch :Minions[]=[];
+ 
   listFav: Minions[]=[]
     minions :Minions[] =[
     {
@@ -70,7 +71,12 @@ export class MinionsComponent {
     }
 
   ] 
-  
+  getMinions():Minions[]{
+    if(this.minionsSearch.length==0){
+      return this.minions;
+    }
+    return this.minionsSearch 
+  }
   fav(index:number){
     const minion:Minions = this.minions[index];
     this.listFav.push(minion);

@@ -11,6 +11,7 @@ export class NavBarComponent {
   search:string='';
   @Output() newSearch:EventEmitter<string> = new EventEmitter<string>();
 
+ 
   addNewSearch(){
     this.newSearch.emit(this.search)
   }

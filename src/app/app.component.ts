@@ -77,11 +77,13 @@ export class AppComponent {
   ] 
 
   elementSearch(search:string){
-    this.search= search;
+    this.filter = this.minions.filter(minion=>minion.name.includes(search))
+    console.log(this.filter);
+    
+    
   }
-  filter : Minions[]= []
-  showMinions(){
-    this.filter = this.minions.filter(minion=>minion.name===this.search)
-
-  }
+  filter : Minions[]=[]
+ 
+  
+  
 }
