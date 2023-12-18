@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Minions } from '../interfaces/minion';
 
 @Component({
@@ -9,7 +9,9 @@ import { Minions } from '../interfaces/minion';
   templateUrl: './minions.component.html'
 })
 export class MinionsComponent {
-  minions :Minions[] =[
+  @Input() minionsSearch :Minions[]=[];
+  listFav: Minions[]=[]
+    minions :Minions[] =[
     {
       name: "Kevin",
       bio: "Aquí debería haber una biografía de la vida de este minion, pero son gente muy misteriosa, así que tendrás que imaginártela...",
@@ -68,8 +70,7 @@ export class MinionsComponent {
     }
 
   ] 
-  listFav: Minions[]=[]
-
+  
   fav(index:number){
     const minion:Minions = this.minions[index];
     this.listFav.push(minion);
