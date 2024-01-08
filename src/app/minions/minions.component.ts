@@ -10,34 +10,20 @@ import { MinionService } from '../services/minion.service';
   templateUrl: './minions.component.html'
 })
 export class MinionsComponent implements OnInit, OnChanges{
-  @Input() minionsSearch :Minions[]=[];
-  @Input() searchTerm :Minions[]=[]
+  //@Input() minionsSearch :Minions[]=[];
+  @Input() searchTerm :string=''
+  minions: Minions[] = [];
 
   constructor(
     private minionsService: MinionService
   ){}
   ngOnChanges(changes: SimpleChanges): void {
-    //this.minionsSearch = this.minionsService.filterMinions(this.searchTerm)
+    this.minions = this.minionsService.filterMinions(this.searchTerm)
   }
   ngOnInit(): void {
-    //this.minionsSearch = this.minionsService.getMinions()
+    this.minions =
+    this.minionsService.filterMinions(this.searchTerm)
   }
   
-  listFav: Minions[]=[]
-    
-  getMinions():Minions[]{
-    /*if(this.minionsSearch.length==0){
-      return this.minions;
-    }*/
-    return this.minionsSearch 
-  }
-  fav(index:number){
-    const minion:Minions = this.minionsSearch[index];
-    this.listFav.push(minion);
-    
-  }
-  disFav(minion:Minions){
-    const index = this.listFav.indexOf(minion);
-    this.listFav.splice(index,1)
-  }
+ 
 }

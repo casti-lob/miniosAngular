@@ -64,16 +64,14 @@ export class MinionService {
     }
 
   ] 
-  filter:Minions[]=[]
-  constructor() { 
-    console.log('Servicio iniciado');
-    
-  }
+  
   getMinions(){
     return this.minions
   }
 
   filterMinions(search:string){
-    return this.filter = this.minions.filter(minion=>minion.name.toLowerCase().includes(search.toLowerCase()))
+    
+    
+    return this.minions.filter(minion=>minion.name.toLowerCase().includes(search.toLowerCase()))
   }
 }

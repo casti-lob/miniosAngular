@@ -15,15 +15,11 @@ import { MinionService } from './services/minion.service';
 })
 export class AppComponent {
   title = 'minions';
-  search: string='';
+  searchTerm: string='';
 
-  minions :Minions[] =[] 
-  constructor(private minionService:MinionService){}
-  elementSearch(search:string){
-    this.filter = this.minionService.filterMinions(search)
-
-  }
-  filter : Minions[]=[]
+ search( term:string){
+  this.searchTerm = term;
+ }
  
   
   

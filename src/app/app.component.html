@@ -1,5 +1,5 @@
-<app-nav-bar (newSearch)="elementSearch($event)"></app-nav-bar>
+<app-nav-bar (newSearch)="search($event)"></app-nav-bar>
 <div class="container">
-      <app-minions [minionsSearch]="filter"></app-minions>  
+      <!--<app-minions [searchTerm]="searchTerm"></app-minions>  -->
      <router-outlet></router-outlet>
 </div>
