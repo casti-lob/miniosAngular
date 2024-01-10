@@ -1,0 +1,19 @@
+<div class="col-lg-4">
+
+    <div  class="card" style="width: 18rem;">
+        <img src=" {{minion.img}} " class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{minion.name}}</h5>
+          <p class="card-text">{{minion.bio}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Año {{minion.birth}}</li>
+          <li  *ngIf="minion.side== 'malvado'; else bueno " class="list-group-item">Actitud {{minion.side}} <img src="assets/img/de los malos.PNG"  width="25px" height="25px" alt=""></li>
+          <ng-template #bueno>
+            <li class="list-group-item">Actitud {{minion.side}} <img src="assets/img/de los buenos.PNG" width="25px" height="25px" alt=""></li>
+    
+          </ng-template>
+    
+        </ul>
+      </div>
+    </div>

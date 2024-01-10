@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Minions } from '../interfaces/minion';
 import { MinionService } from '../services/minion.service';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-minions',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './minions.component.html'
 })
 export class MinionsComponent implements OnInit, OnChanges{
@@ -18,11 +19,12 @@ export class MinionsComponent implements OnInit, OnChanges{
     private minionsService: MinionService
   ){}
   ngOnChanges(changes: SimpleChanges): void {
-    this.minions = this.minionsService.filterMinions(this.searchTerm)
+    this.minions =this.minionsService.getMinions()
+    //this.minionsService.filterMinions(this.searchTerm)
   }
   ngOnInit(): void {
-    this.minions =
-    this.minionsService.filterMinions(this.searchTerm)
+    this.minions =this.minionsService.getMinions()
+    //this.minionsService.filterMinions(this.searchTerm)
   }
   
  

@@ -69,6 +69,12 @@ export class MinionService {
     return this.minions
   }
 
+  getMinion(id:string){
+    
+    
+    return this.minions.find((minion)=>minion.name === id);
+  }
+
   filterMinions(search:string){
     
     

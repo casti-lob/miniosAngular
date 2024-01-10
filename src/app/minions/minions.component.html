@@ -1,12 +1,14 @@
+<div class="container text-center">
 <div class="row">
-
+  <div class="col-8">
 @for (minion of minions; track $index) {
-    <div class="col-lg-4">
+    
 
 <div  class="card" style="width: 18rem;">
     <img src=" {{minion.img}} " class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{minion.name}}</h5>
+      
+      <a class="nav-link" routerLink="{{minion.name}}"><h5 class="card-title">{{minion.name}}</h5></a>
       <p class="card-text">{{minion.bio}}</p>
     </div>
     <ul class="list-group list-group-flush">
@@ -19,7 +21,12 @@
 
     </ul>
   </div>
-</div>
-}
 
+}
+</div>
+<div class="col-4">
+
+  <router-outlet></router-outlet>
+</div>
+</div>
 </div>
