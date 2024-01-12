@@ -19,13 +19,14 @@ export class MinionsComponent implements OnInit, OnChanges{
     private minionsService: MinionService
   ){}
   ngOnChanges(changes: SimpleChanges): void {
+    
     if(!this.search){
     this.minionsService.getMinions()
     .subscribe({
       next: (minions) => this.minions=minions
     })
   }else{
-    
+   
     this.minionsService.filterMinions(this.search)
     .subscribe({
       next: (minions) => this.minions = minions
@@ -36,9 +37,17 @@ export class MinionsComponent implements OnInit, OnChanges{
   }
   ngOnInit(): void {
     
+    if(!this.search){
       this.minionsService.getMinions()
       .subscribe({
         next: (minions) => this.minions=minions
+      })
+    }else{
+      
+      
+      this.minionsService.filterMinions(this.search)
+      .subscribe({
+        next: (minions) => this.minions = minions
       })
     
     
@@ -46,4 +55,5 @@ export class MinionsComponent implements OnInit, OnChanges{
   }
   
  
+}
 }

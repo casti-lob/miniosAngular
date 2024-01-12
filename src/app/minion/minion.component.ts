@@ -12,24 +12,35 @@ import { CommonModule } from '@angular/common';
   styleUrl: './minion.component.css'
 })
 export class MinionComponent implements OnInit , OnChanges{
-  @Input() id: string = '';
+  @Input() minionId: string = '';
  
   minion!:Minion 
+ 
   constructor(
     private minionsService: MinionService
   ){}
   ngOnChanges(changes: SimpleChanges): void {
-    let getMinion = this.minionsService.getMinion(this.id);
+    this.minionsService.getMinion(this.minionId)
+    .subscribe({
+      next: (minion)=> this.minion=minion
+    })
+    /*let getMinion = this.minionsService.getMinion(this.id);
     if (getMinion) {
       this.minion = getMinion
-    }
+    }*/
   }
 
   ngOnInit(): void {
-    let getMinion = this.minionsService.getMinion(this.id);
+    this.minionsService.getMinion(this.minionId)
+    .subscribe({
+      next: (minion)=> this.minion=minion
+    })
+    console.log(this.minion);
+    
+    /*let getMinion = this.minionsService.getMinion(this.id);
     if (getMinion) {
       this.minion = getMinion
-    }
+    }*/
   }
 
 }

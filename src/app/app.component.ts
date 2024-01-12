@@ -19,9 +19,11 @@ export class AppComponent {
 
   constructor(private router: Router){}
 
- search( term:string){
-  this.router.navigate(['minions',term]);
-  this.searchTerm = term;
+ search( search:string){
+  
+  
+  this.router.navigate(['minions/search',search]);
+  //this.searchTerm = term;
  }
  
   

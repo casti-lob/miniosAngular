@@ -19,10 +19,10 @@ export class MinionService {
     return this.http.get<Minion[]>(this.url);
   }
 
-  getMinion(id:string){
+  getMinion(minionId:string):Observable<Minion>{
+    return this.http.get<Minion>(`${this.url}/${minionId}`)
     
-    
-    return this.minions.find((minion)=>minion.name === id);
+    //return this.minions.find((minion)=>minion.name === id);
   }
 
   filterMinions(search:string):Observable<Minion[]>{
