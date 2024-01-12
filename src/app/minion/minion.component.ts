@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MinionService } from '../services/minion.service';
-import { Minions } from '../interfaces/minion';
+import { Minion } from '../interfaces/minion';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class MinionComponent implements OnInit , OnChanges{
   @Input() id: string = '';
  
-  minion!:Minions 
+  minion!:Minion 
   constructor(
     private minionsService: MinionService
   ){}

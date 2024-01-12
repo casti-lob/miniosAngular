@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MinionsComponent } from './minions/minions.component';
-import { Minions } from './interfaces/minion';
+import { Minion } from './interfaces/minion';
 import { MinionService } from './services/minion.service';
 
 @Component({
@@ -17,7 +17,10 @@ export class AppComponent {
   title = 'minions';
   searchTerm: string='';
 
+  constructor(private router: Router){}
+
  search( term:string){
+  this.router.navigate(['minions',term]);
   this.searchTerm = term;
  }
  

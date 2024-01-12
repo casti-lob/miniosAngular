@@ -1,4 +1,5 @@
-export interface Minions{
+export interface Minion{
+    id: number;
     name: string;
     bio:string;
     img:string;
