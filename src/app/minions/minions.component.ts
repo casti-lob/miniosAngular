@@ -56,4 +56,16 @@ export class MinionsComponent implements OnInit, OnChanges{
   
  
 }
+
+  deleteMinion(id:number){
+    let deleteMinion!:Minion
+    this.minionsService.deleteMinion(id)
+    .subscribe({
+      next: (minion)=> deleteMinion=minion
+      
+    })
+    this.minions = this.minions.filter(minion=> minion !==deleteMinion)
+    
+
+  }
 }

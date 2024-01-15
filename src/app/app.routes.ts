@@ -15,5 +15,6 @@ export const routes: Routes = [
     },
     {path: 'addMinion', component: AddMinionComponent},
     {path: 'minion/:id', component: MinionComponent},
+    {path: 'updateMinion/:id', component: AddMinionComponent},
     {path: '**', component: NotFoundComponent }
 ];

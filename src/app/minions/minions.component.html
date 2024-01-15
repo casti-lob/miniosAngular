@@ -18,7 +18,12 @@
         <li class="list-group-item">Actitud {{minion.side}} <img src="assets/img/de los buenos.PNG" width="25px" height="25px" alt=""></li>
 
       </ng-template>
-
+      <li class="list-group-item">
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <button (click)="deleteMinion(minion.id)" type="button" class="btn btn-danger">Eliminar</button>
+          <a class="nav-link" routerLink="/updateMinion/{{minion.id}}"><button type="button" class="btn btn-warning">Modificar</button></a>
+        </div>
+      </li>
     </ul>
   </div>
 

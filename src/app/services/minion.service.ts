@@ -19,7 +19,7 @@ export class MinionService {
     return this.http.get<Minion[]>(this.url);
   }
 
-  getMinion(minionId:string):Observable<Minion>{
+  getMinion(minionId:string|number):Observable<Minion>{
     return this.http.get<Minion>(`${this.url}/${minionId}`)
     
     //return this.minions.find((minion)=>minion.name === id);
@@ -30,7 +30,14 @@ export class MinionService {
     return this.http.get<Minion[]>(`${this.url}?name=${search}`)
   }
 
-  addMinion(minion: Omit<Minion,"id">){
-    
+  addMinion(minion: Omit<Minion,"id" | "img">){
+    return this.http.post<Minion>(this.url,minion);
+  }
+
+  deleteMinion(id:number):Observable<Minion> {
+    return this.http.delete<Minion>(`${this.url}/${id}`);
+  }
+  updateMinion(minion:Minion, id:number):Observable<Minion>{
+    return this.http.put<Minion>(`${this.url}/${id}`,minion)
   }
 }
