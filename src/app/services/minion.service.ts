@@ -29,4 +29,8 @@ export class MinionService {
     
     return this.http.get<Minion[]>(`${this.url}?name=${search}`)
   }
+
+  addMinion(minion: Omit<Minion,"id">){
+    
+  }
 }

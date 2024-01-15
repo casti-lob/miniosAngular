@@ -1,0 +1,29 @@
+<h1 class="display-3"> Creción de un minion</h1>
+
+<form (ngSubmit)="addMinion()">
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Bio</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Cumpleaños</label>
+        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Actitud</label>
+    <select class="form-select" aria-label="Default select example">
+        <option value="de los buenos">Bueno</option>
+        <option value="malvado">Malo</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Añadir</button>
+</form>
