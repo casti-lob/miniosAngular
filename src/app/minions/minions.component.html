@@ -1,33 +1,44 @@
 <div class="container text-center">
 <div class="row">
   <div class="col-8">
-@for (minion of minions; track $index) {
+@if ( {minions: minions$ | async, error: minionError$ | async} ; as data) {
+  @if (!data.error && data.minions) {
+
+    @for (minion of data.minions; track minion.id) {
     
 
-<div  class="card" style="width: 18rem;">
-    <img src=" {{minion.img}} " class="card-img-top" alt="...">
-    <div class="card-body">
+      <div  class="card" style="width: 18rem;">
+          <img src=" {{minion.img}} " class="card-img-top" alt="...">
+          <div class="card-body">
+            
+            <a class="nav-link" routerLink="{{minion.id}}"><h5 class="card-title">{{minion.name}}</h5></a>
+            <p class="card-text">{{minion.bio}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Año {{minion.birth}}</li>
+            <li  *ngIf="minion.side== 'malvado'; else bueno " class="list-group-item">Actitud {{minion.side}} <img src="assets/img/de los malos.PNG"  width="25px" height="25px" alt=""></li>
+            <ng-template #bueno>
+              <li class="list-group-item">Actitud {{minion.side}} <img src="assets/img/de los buenos.PNG" width="25px" height="25px" alt=""></li>
       
-      <a class="nav-link" routerLink="{{minion.id}}"><h5 class="card-title">{{minion.name}}</h5></a>
-      <p class="card-text">{{minion.bio}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Año {{minion.birth}}</li>
-      <li  *ngIf="minion.side== 'malvado'; else bueno " class="list-group-item">Actitud {{minion.side}} <img src="assets/img/de los malos.PNG"  width="25px" height="25px" alt=""></li>
-      <ng-template #bueno>
-        <li class="list-group-item">Actitud {{minion.side}} <img src="assets/img/de los buenos.PNG" width="25px" height="25px" alt=""></li>
-
-      </ng-template>
-      <li class="list-group-item">
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-          <button (click)="deleteMinion(minion.id)" type="button" class="btn btn-danger">Eliminar</button>
-          <a class="nav-link" routerLink="/updateMinion/{{minion.id}}"><button type="button" class="btn btn-warning">Modificar</button></a>
+            </ng-template>
+            <li class="list-group-item">
+              <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button (click)="deleteMinion(minion.id)" type="button" class="btn btn-danger">Eliminar</button>
+                <a class="nav-link" routerLink="/updateMinion/{{minion.id}}"><button type="button" class="btn btn-warning">Modificar</button></a>
+              </div>
+            </li>
+          </ul>
         </div>
-      </li>
-    </ul>
-  </div>
-
+      
+      }
+      
+  }
+  @else if (data.error) {
+    <h1> Upps! Se ha producido el siguiente error</h1>
+    <p> {{data.error.message}} </p>
+  }
 }
+
 </div>
 <div class="col-4">
 

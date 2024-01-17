@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MinionService } from '../services/minion.service';
 import { Minion } from '../interfaces/minion';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-minion',
@@ -11,36 +12,41 @@ import { CommonModule } from '@angular/common';
   templateUrl: './minion.component.html',
   styleUrl: './minion.component.css'
 })
-export class MinionComponent implements OnInit , OnChanges{
-  @Input() minionId: string = '';
- 
+export class MinionComponent implements OnInit {
+  @Input('id') minionId!: number;
+  
   minion!:Minion 
- 
+  minion$!:Observable<Minion>
   constructor(
-    private minionsService: MinionService
+    private minionsService: MinionService,
+    private router:Router,
+    private route:ActivatedRoute
   ){}
-  ngOnChanges(changes: SimpleChanges): void {
-    this.minionsService.getMinion(this.minionId)
-    .subscribe({
-      next: (minion)=> this.minion=minion
-    })
-    /*let getMinion = this.minionsService.getMinion(this.id);
-    if (getMinion) {
-      this.minion = getMinion
-    }*/
-  }
+
+  
 
   ngOnInit(): void {
+    /*
     this.minionsService.getMinion(this.minionId)
     .subscribe({
       next: (minion)=> this.minion=minion
     })
     console.log(this.minion);
-    
+    */
     /*let getMinion = this.minionsService.getMinion(this.id);
     if (getMinion) {
       this.minion = getMinion
     }*/
-  }
 
+    this.route.params
+    .subscribe({
+      next: (data)=>{
+        this.minionId = data['id'];
+        this.minion$ = this.minionsService.getMinion(this.minionId)
+      }
+    })
+  }
+  return (){
+    this.router.navigate(['/minions'])
+  }
 }

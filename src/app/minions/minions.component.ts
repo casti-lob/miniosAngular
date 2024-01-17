@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Minion } from '../interfaces/minion';
 import { MinionService } from '../services/minion.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { Observable, catchError, ignoreElements, of } from 'rxjs';
 
 @Component({
   selector: 'app-minions',
@@ -14,12 +15,15 @@ export class MinionsComponent implements OnInit, OnChanges{
   //@Input() minionsSearch :Minion[]=[];
   @Input() search :string=''
   minions: Minion[] = [];
+  minions$!: Observable<Minion[]>
+  minionError$!: Observable<any>;
+  errorMessage: any = null;
 
   constructor(
     private minionsService: MinionService
   ){}
   ngOnChanges(changes: SimpleChanges): void {
-    
+    /*
     if(!this.search){
     this.minionsService.getMinions()
     .subscribe({
@@ -34,9 +38,10 @@ export class MinionsComponent implements OnInit, OnChanges{
   }
     //this.minions =this.minionsService.getMinions()
     //this.minionsService.filterMinions(this.searchTerm)
+    */
   }
   ngOnInit(): void {
-    
+    /*
     if(!this.search){
       this.minionsService.getMinions()
       .subscribe({
@@ -51,10 +56,17 @@ export class MinionsComponent implements OnInit, OnChanges{
       })
     
     
+
     
   }
+  */
   
- 
+  this.minions$ = this.minionsService.getMinions();
+  this.minionError$ = this.minions$.pipe(
+    ignoreElements(),
+    catchError((err)=>of(err))
+  )
+  
 }
 
   deleteMinion(id:number){

@@ -10,7 +10,7 @@ export const routes: Routes = [
     {path: 'minions/search/:search', component: MinionsComponent},
     {path: 'minions', component: MinionsComponent,
         children:[
-            {path:':minionId', component:MinionComponent}
+            {path:':id', component:MinionComponent}
         ]
     },
     {path: 'addMinion', component: AddMinionComponent},
