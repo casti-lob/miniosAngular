@@ -33,7 +33,7 @@ export class MinionService {
   addMinion(minion: Omit<Minion,"id" | "img">){
     return this.http.post<Minion>(this.url,minion);
   }
-
+//devuelve un objeto vacio
   deleteMinion(id:number):Observable<Minion> {
     return this.http.delete<Minion>(`${this.url}/${id}`);
   }

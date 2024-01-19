@@ -18,6 +18,7 @@ export class NavBarComponent {
  }
   addNewSearch(){
     this.newSearch.emit(this.search)
+    //es mejor la redirección por aqui en vez en el padre
   }
 
 }
